@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author Inspiron
- *
- */
-package JMan;
