@@ -1,3 +1,5 @@
+package JMan;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -31,9 +33,11 @@ public class Map implements ActionListener{
     
     private JMan jMan; //the J*Man piece in this map.
     
+    public static Map m;
+    
     /** Start a game 20x20 game wih 10 walkers, 10 pillars, and 20 blocks. */
     public static void main(String[] pars) {
-        Map m= new Map();
+        m = new Map();
     }
     
     /** Constructor: a default 20 x 20 game with 10 walkers, 10 pillars,
@@ -159,7 +163,17 @@ public class Map implements ActionListener{
      if the new piece is J*Man, store it in field jMan.
      Precondition: typ is one of the piece constants in class Piece.*/
     public void putNew(int typ, int x, int y){
-        
+        if (typ == 0){
+        	grid[x][y] = new Block(x,y,m);
+        } else if (typ == 1){
+        	jMan = new JMan(x,y,Piece.rand(0, 2),m);
+        	grid[x][y] = jMan;
+        } else if (typ == 2){
+        	grid[x][y] = new Walker(x,y,Piece.rand(0, 2),m);
+        } else if (typ == 3){
+        	grid[x][y] = new Pillar(x,y,Piece.rand(0, 2), m);
+        }
+		
     }
     
     /** = "(x, y) is inside the grid". */
